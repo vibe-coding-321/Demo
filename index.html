@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gravity Prototype</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    color: #ccc;
+  }
+  canvas {
+    border: 1px solid #222;
+    display: block;
+  }
+  #body-selector {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #body-selector span {
+    font-size: 13px;
+    margin-right: 4px;
+  }
+  #body-selector button {
+    background: #1a1a2e;
+    color: #ccc;
+    border: 1px solid #333;
+    width: 34px;
+    height: 30px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #body-selector button:hover { border-color: #00ffcc; color: #00ffcc; }
+  #body-selector button.active {
+    background: #00ffcc;
+    color: #0a0a0f;
+    border-color: #00ffcc;
+  }
+  #controls {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  #respawn {
+    background: #00ffcc;
+    color: #0a0a0f;
+    border: none;
+    padding: 8px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #respawn:hover { background: #33ffd6; }
+  #status {
+    font-size: 14px;
+    min-width: 260px;
+  }
+  #fuel-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+  }
+  #fuel-toggle input {
+    cursor: pointer;
+    accent-color: #00ffcc;
+  }
+</style>
+</head>
+<body>
+  <div id="body-selector">
+    <span>Bodies:</span>
+    <button onclick="setBodyCount(1)">1</button>
+    <button onclick="setBodyCount(2)">2</button>
+    <button onclick="setBodyCount(3)">3</button>
+    <button onclick="setBodyCount(4)">4</button>
+    <button onclick="setBodyCount(5)">5</button>
+  </div>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <div id="controls">
+    <button id="respawn">Respawn</button>
+    <span id="status">Orbiting...</span>
+    <label id="fuel-toggle">
+      <input type="checkbox" id="infinite-fuel" onchange="setRefuelMode(this.checked ? 'infinite' : 'default')">
+      ∞ Fuel
+    </label>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
