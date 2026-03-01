@@ -4,7 +4,7 @@ const DT = 0.4;
 const W  = 800;
 const H  = 600;
 const THRUST_ACCEL  = 0.8;
-const MAX_SPEED     = 9.0;
+const MAX_SPEED     = 25.0;
 const FUEL_MAX      = 200;
 const REFUEL_RATE   = 0.5;
 
@@ -101,7 +101,7 @@ function generateChunkBodies(cx, cy) {
 
   // Dynamic margin based on max possible radius to prevent cross-chunk overlap
   const maxBaseRadius = 45; // 20 + 25
-  const maxRadius = maxBaseRadius * Math.sqrt(scaleFactor);
+  const maxRadius = maxBaseRadius * Math.sqrt(scaleFactor) * 0.75;
   const margin = Math.max(50, maxRadius + 10);
   const bodies = [];
   const GAP = 10; // minimum gap between bodies
@@ -110,7 +110,7 @@ function generateChunkBodies(cx, cy) {
     const baseMass = 2000 + rng() * 4000;
     const mass = baseMass * scaleFactor;
     const baseRadius = 20 + rng() * 25;
-    const radius = baseRadius * Math.sqrt(scaleFactor);
+    const radius = baseRadius * Math.sqrt(scaleFactor) * 0.75;
     const colorIdx = Math.floor(rng() * BODY_COLORS.length);
 
     // Try up to 5 placements to avoid overlap with previously placed bodies
